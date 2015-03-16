@@ -19,12 +19,25 @@ export EDITOR=$EDITOR
 alias update-repo='npm install && bower install && grunt compile'
 
 # docker
-alias docker-rmi='docker rmi $(docker images -q --filter "dangling=true")'
-alias docker-rm='docker rm $(docker ps -q -f status=exited)'
+if hash docker 2>/dev/null; then
+
+	alias docker-rmi='docker rmi $(docker images -q --filter "dangling=true")'
+	alias docker-rm='docker rm $(docker ps -q -f status=exited)'
+
+fi
 
 # boot2docker
-export DOCKER_CERT_PATH=/Users/${USER}/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=1
-export DOCKER_HOST=tcp://$(boot2docker ip):2376
+if hash boot2docker 2>/dev/null; then
 
+	# get boot2docker status
+	STATUS="$(boot2docker status)"
+
+	# export environment variables are already set correctly
+	if [ "$STATUS" = "running" ]; then
+		export DOCKER_CERT_PATH=/Users/${USER}/.boot2docker/certs/boot2docker-vm
+		export DOCKER_TLS_VERIFY=1
+		export DOCKER_HOST=tcp://$(boot2docker ip):2376
+	fi
+
+fi
 # git
