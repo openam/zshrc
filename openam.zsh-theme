@@ -1,5 +1,6 @@
+# Horizontal bar of dashes '--------------'
 function horizontal {
-        printf "%$(tput cols)s\n" | tr ' ' '*'
+    printf "%$(tput cols)s\n" | tr ' ' '-'
 }
 
 # Standard prompt
