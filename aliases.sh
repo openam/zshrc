@@ -4,8 +4,11 @@ alias a='ls -CF'
 alias la='ls -A'
 alias ll='ls -alF'
 alias remove-dsstore="find . -name '*.DS_Store' -type f -delete"
-alias direxec="~/.zsh/scripts/direxec.sh"
 alias reload-zsh="source ~/.zshrc"
+
+# custom scripts
+alias direxec="~/.zsh/scripts/direxec.sh"
+alias marked="~/.zsh/scripts/marked.sh"
 
 # Use sublime text or vi
 if [ -f /usr/local/bin/subl ]; then
