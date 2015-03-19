@@ -9,7 +9,7 @@ function git_remote_status {
 		REMOTE_STATUS=""
 
 		# check if the branch is tracking against an upstream branch
-		if git config --get-regex branch > /dev/null 2>&1; then
+		if git rev-list --right-only --count HEAD...@'{u}' > /dev/null 2>&1; then
 
 			BEHIND="$(git rev-list --right-only --count HEAD...@'{u}')"
 			AHEAD="$(git rev-list --left-only --count HEAD...@'{u}')"
