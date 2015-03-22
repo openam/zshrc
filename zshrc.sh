@@ -80,5 +80,5 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 if [ -f ~/.zsh/aliases.sh ]; then
-    . ~/.zsh/aliases.sh
+    source ~/.zsh/aliases.sh
 fi
