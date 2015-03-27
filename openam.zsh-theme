@@ -6,10 +6,10 @@ function horizontal {
 # Provide information about ahead/behind tracked branch
 function git_remote_status {
 	if [ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1; then
-		REMOTE_STATUS=""
 
 		# check if the branch is tracking against an upstream branch
 		if git rev-list --right-only --count HEAD...@'{u}' > /dev/null 2>&1; then
+			REMOTE_STATUS="%{$fg[magenta]%} u="
 
 			BEHIND="$(git rev-list --right-only --count HEAD...@'{u}')"
 			AHEAD="$(git rev-list --left-only --count HEAD...@'{u}')"
