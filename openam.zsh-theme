@@ -9,13 +9,15 @@ function git_remote_status {
 
 		# check if the branch is tracking against an upstream branch
 		if git rev-list --right-only --count HEAD...@'{u}' > /dev/null 2>&1; then
-			REMOTE_STATUS="%{$fg[magenta]%} u="
+			TRACKER="$(git rev-parse --abbrev-ref --symbolic-full-name @{u})"
+			REMOTE_STATUS="%{$fg[magenta]%} [%{$fg[blue]%}${TRACKER}"
 
 			BEHIND="$(git rev-list --right-only --count HEAD...@'{u}')"
 			AHEAD="$(git rev-list --left-only --count HEAD...@'{u}')"
 
 			if [[ "$BEHIND" > 0 ]] || [[ "$AHEAD" > 0 ]]; then
-				REMOTE_STATUS="%{$fg[magenta]%} u"
+				# REMOTE_STATUS="%{$fg[magenta]%} u"
+				REMOTE_STATUS="${REMOTE_STATUS}%{$fg[white]%}:"
 
 				if [[ "$AHEAD" > 0 ]]; then
 					REMOTE_STATUS="${REMOTE_STATUS}${GIT_REMOTE_STATUS_AHEAD}${AHEAD}"
@@ -24,6 +26,8 @@ function git_remote_status {
 					REMOTE_STATUS="${REMOTE_STATUS}${GIT_REMOTE_STATUS_BEHIND}${BEHIND}"
 				fi
 			fi
+
+			REMOTE_STATUS="${REMOTE_STATUS}%{$fg[magenta]%}]"
 		fi
 		# echo 'is git repository'
 		echo "$REMOTE_STATUS"
