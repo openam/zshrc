@@ -7,14 +7,19 @@ This has been mainly used on OSX, so there may need to be some changes to work w
 ln -s ~/Dropbox/Computers/zsh ~/.zsh
 
 # or clone to home directory
-git clone https://github.com/openam/zsh.git ~/.zsh
+git clone https://github.com/openam/zshrc.git ~/.zsh
 ```
 
 Link all the files into the sytem
 ```bash
+# remove the installed version of .zshrc
+rm ~/.zshrc
 # link zshrc file to home directory
 ln -s ~/.zsh/zshrc.sh ~/.zshrc
 
 # link the theme
 ln -s ~/.zsh/openam.zsh-theme $ZSH/themes/openam.zsh-theme
+
+# reload the config
+source ~/.zshrc
 ```
